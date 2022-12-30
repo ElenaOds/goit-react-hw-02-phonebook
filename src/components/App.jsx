@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { nanoid } from 'nanoid';
-import { ContactForm } from './ContactForm/ContactForm';
+import { ContactForm }  from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
-import {ContactList} from './ContactList/ContactList';
+import { ContactList } from './ContactList/ContactList';
 import {MainTitle, Title} from './App.styled';
 
 
@@ -20,53 +20,20 @@ class App extends Component {
     number: ''
   };
 
-  // handleSubmit = e => {
-  //   const id = nanoid();
-  //   const name = e.name;
-  //   const number = e.number;
-  //   const contactsLists = [...this.state.contacts];
 
-  //   if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
-  //     alert(`${name} is already in contacts.`);
-  //   } else {
-  //     contactsLists.push({ name, id, number });
-  //   }
+  handleSubmit = e => {
+    const id = nanoid();
+    const name = e.name;
+    const number = e.number;
+    const contactsLists = [...this.state.contacts];
 
-  //   this.setState({ contacts: contactsLists });
-  // };
+    if (contactsLists.findIndex(contact => name === contact.name) !== -1) {
+      alert(`${name} is already in contacts.`);
+    } else {
+      contactsLists.push({ name, id, number });
+    }
 
-  // addContact = (name, number) => {
-  //   const newContact = {
-  //     id: nanoid(),
-  //     name,
-  //     number,
-  //   };
-
-  //   if (
-  //     this.state.contacts.find(
-  //       findContact => findContact.name === newContact.name
-  //     )
-  //   ) {
-  //     alert(`${newContact.name} is already in contacts`);
-  //   } else {
-  //     this.setState(prevState => ({
-  //       contacts: [newContact, ...prevState.contacts],
-  //     }));
-  //   }
-  //   return;
-  // };
-
-  addContact = (name, number) => {
-    const newContact = {
-          id: nanoid(),
-          name,
-          number,
-        };
-    this.setState(prevState => {
-          return {
-            contacts: [newContact, ...prevState.contacts],
-          };
-        });
+    this.setState({ contacts: contactsLists });
   };
   
 
@@ -98,7 +65,7 @@ class App extends Component {
       <div>
         <MainTitle>Phonebook</MainTitle>
         <ContactForm 
-        onSubmit={this.addContact}
+        handleSubmit={this.handleSubmit}
         />
 
         <Title>Contacts</Title>
