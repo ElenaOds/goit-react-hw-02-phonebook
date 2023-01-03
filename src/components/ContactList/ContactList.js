@@ -2,7 +2,7 @@ import { List, ListItem, Button } from './ContactList.styled';
 
 export const ContactList = ({ contacts, onDeleteContact }) => (
   
-    <List>
+   <List>
       {contacts.map((contact, id) => (
         <ListItem key={id}>
           {contact.name}: {contact.number}
